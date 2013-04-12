@@ -4,6 +4,7 @@ from models import Picture
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.utils import simplejson
+import settings.settings
 import datetime
 import time
 import random
@@ -21,9 +22,8 @@ def edit_image(request):
 def upload(request):
     if request.method == "POST" or True:
         
-        # TODO: make uploads path a setting
         filename = str(int(random.random() * 1000000)) + str(int(time.time())) + ".png"
-        fh = open("/uploads/" + filename , "wb")
+        fh = open(settings.MEDIA_PATH + filename , "wb")
         fh.write(request.POST['base64_image'].decode('base64'))
         fh.close()
 
