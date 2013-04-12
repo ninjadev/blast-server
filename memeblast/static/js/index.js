@@ -82,6 +82,7 @@ function initAjax() {
 
 
 function takePhoto() {
+    console.log("takePhoto was called");
     navigator.camera.getPicture(getPic,
             function failure(message){
                 console.log("CAMERA ERROR");  
@@ -96,6 +97,7 @@ function takePhoto() {
 
 function getPic(data) {
     //her ligger bildeinfoen
+    console.log("CAMERA SUCCESS!!");
     var imageTaken = document.getElementById('pictureTaken');
     imageTaken.style.display='block';
     imageTaken.style.width="100%";
@@ -105,6 +107,7 @@ function getPic(data) {
 }
 
 function sendImage(data) {
+    console.log("got to sendimage even, mofo");
     alert("attempting to send data beginning with " + data.slice(0,10,0));
     console.log("attempting to send image encoded as base64");
     data.length && $.ajax({ 
