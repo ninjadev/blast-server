@@ -12,42 +12,37 @@ class Site(object):
         with cd(self.dir):
             sudo(cmd, user=self.user_id)
 
-    def gitrun(self, cmd):
-        with cd(self.gitdir):
-            sudo(cmd, user=self.user_id)
-
     def deploy(self):
         self.git_pull()
         self.update_packages()
-        self.run('../../bin/python manage.py syncdb --migrate')
-        self.run('../../bin/python manage.py collectstatic --noinput')
+        self.run('../bin/python manage.py syncdb --migrate')
+        self.run('../bin/python manage.py collectstatic --noinput')
         self.restart()
 
     def git_pull(self):
         # .pyc files can create ghost behavior when .py files are deleted...
-        self.gitrun("find . -name '*.pyc' -delete")
-        self.gitrun("git fetch origin && git reset --hard origin/master")
+        self.run("find . -name '*.pyc' -delete")
+        self.run("git fetch origin && git reset --hard origin/master")
 
     def git_tag(self):
         if confirm("Give new tag for this deployment?"):
-            self.gitrun("git tag |tail -n 5")
+            self.run("git tag |tail -n 5")
             tag = prompt('Give new tag for this deployment: ')
-            self.gitrun("git tag %s" % tag)
-            self.gitrun("git push --tags && git push")
+            self.run("git tag %s" % tag)
+            self.run("git push --tags && git push")
 
     def update_packages(self):
-        self.gitrun("../bin/pip install -r requirements.txt")
+        self.run("../bin/pip install -r requirements.txt")
 
     def restart(self):
         header("Running: Restart server script: nginx")
         self.run("killall python || true")
-        self.run("../../bin/python manage.py run_gunicorn 127.0.0.1:8888 -D")
+        self.run("../bin/python manage.py run_gunicorn 127.0.0.1:8888 -D")
         header("Running: Restart server script: nginx")
         run("sudo service nginx restart")
 
 PROD = Site(
-    dir='/home/prods/memeblast/memeblast/memeblast',
-    gitdir='/home/prods/memeblast/memeblast',
+    dir='/home/prods/memeblast/memeblast',
     user_id='web'
 )
 
