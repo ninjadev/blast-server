@@ -103,7 +103,7 @@ function sendImage(data) {
     alert("attempting to send data beginning with " + data.slice(0,10,0));
     data.length && $.ajax({ 
         type: "POST", 
-        url: "/upload/post", 
+        url: "/upload/post/", 
         data: {
             "base64_image": data
         },

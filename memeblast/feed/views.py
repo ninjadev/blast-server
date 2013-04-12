@@ -27,7 +27,7 @@ def upload(request):
     if request.method == "POST":
         
         filename = str(int(random.random() * 1000000)) + str(int(time.time())) + ".jpg"
-        fh = open(settings.MEDIA_PATH + filename , "wb")
+        fh = open(settings.MEDIA_ROOT + filename , "wb")
         fh.write(request.POST['base64_image'].decode('base64'))
         fh.close()
 
