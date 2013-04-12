@@ -40,6 +40,9 @@ class Site(object):
 
     def restart(self):
         header("Running: Restart server script: nginx")
+        self.run("killall python || true")
+        self.run("../../bin/python manage.py run_gunicorn 127.0.0.1:8888 -D")
+        header("Running: Restart server script: nginx")
         run("sudo service nginx restart")
 
 PROD = Site(
