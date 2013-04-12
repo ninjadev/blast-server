@@ -4,11 +4,13 @@
 <h1>Feed</h1>
 {% endblock %}
 {% block content %}
-yo
+<ul data-role="listview">
+    {% for picture in picture_list %}    
+        <li>{{ picture.picture_url }}</li>
+    {% endfor %}
+</ul>
 {% endblock %}
 
 {% block footer %}
-<div data-role="footer" data-position="fixed" class="ui-bar">
-    <a href="#" data-icon="plus">Take a photo</a>
-</div>
+    <a href="#" class = "camerabutton" data-role="button" data-theme="b" data-iconpos="notext" data-icon="flat-camera"></a>
 {% endblock %}
