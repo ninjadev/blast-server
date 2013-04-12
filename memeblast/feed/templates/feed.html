@@ -6,7 +6,7 @@
 {% block content %}
 <ul data-role="listview">
     {% for picture in picture_list %}    
-        <li>{{ pictureurl }}</li>
+        <li>{{ picture.picture_url }}</li>
     {% endfor %}
 </ul>
 {% endblock %}
