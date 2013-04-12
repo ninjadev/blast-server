@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %} Memeblast {% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="/static/jquery.mobile-1.3.1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/jquery.mobile.flatui.min.css" />
+    </head>
+    <body>
+        <div data-role="page">
+            <div data-role="header">
+                {% block header %}
+                {% endblock %}
+            </div>
+            <div data-role="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>
