@@ -4,7 +4,9 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    url(r'^$', 'memeblast.feed.views.feed', name='feed'),
+
+    # Feed urls
+    url(r'^$', include('feed.urls')),
 
     # Examples:
     # url(r'^$', 'memeblast.views.home', name='home'),
