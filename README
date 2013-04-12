@@ -4,7 +4,8 @@
 
 virtualenv memeblast && cd memeblast && source bin/activate
 git clone git@bitbucket.org:sigveseb/memeblast.git && cd memeblast
-pip install -r requirements.txt
+cp memeblast/memeblast/settings.py.example memeblast/memeblast/settings.py
+pip install -r requirements_dev.txt
 python manage.py syncdb --migrate
 
 
@@ -20,5 +21,8 @@ python manage.py syncdb --migrate
 
 ### Lage nye migreringer etter modellendringer
 
-    python manage.py schemamigration --auto
+    python manage.py schemamigration <appname> --auto
 
+### deploy til server
+ 
+    fab deploy
