@@ -22,9 +22,12 @@ var app = {
     initialize: function() {
                     this.bindEvents();
                     $.mobile.allowCrossDomainPages = true;
-                    $('#photoBtn').click(function(e) {
+                    $('#photo-btn').click(function(e) {
                         takePhoto();
                     });
+                    $('#publish-image').bind('click', function(e) {
+                        alert("yolo");
+                    })
                 },
     // Bind Event Listeners
     //
@@ -45,6 +48,27 @@ var app = {
                    }
 };
 
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+    }
+});
 
 function takePhoto() {
     navigator.camera.getPicture(getPic,
@@ -62,4 +86,26 @@ function getPic(data) {
     imageTaken.style.display='block';
     imageTaken.style.width="100%";
     imageTaken.src = "data:image/jpeg;base64,"+data; //her legger vi bildet ut som b64, mens "data" er selve strengen
+
+    sendImage(data);
+}
+
+function sendImage(base64_image) {
+    $.ajax({ 
+        type: "POST", 
+        url: "/upload/post", 
+        data: {
+            "base64_image":base64_image
+        } 
+    })
+}
+
+function  publishImage(image_id) {
+    $.ajax({ 
+        type: "POST", 
+        url: "/upload/publish", 
+        data: {
+            "image_id":image_id
+        }
+    })
 }

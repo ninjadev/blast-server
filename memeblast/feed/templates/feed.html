@@ -6,7 +6,10 @@
 {% block content %}
 <ul data-role="listview">
     {% for picture in picture_list %}    
-        <li>{{ picture.picture_url }}</li>
+        <li>
+        <img src="data:image/jpg;base64, {{picture.picture_url}}">
+            {{ picture.text }}
+        </li>
     {% endfor %}
 </ul>
 <br>
@@ -14,5 +17,5 @@
 {% endblock %}
 
 {% block footer %}
-    <a href="upload" id="photoBtn" data-role="button" data-theme="b" data-iconpos="notext" data-icon="flat-camera"></a>
+    <a href="upload" id="photo-btn" data-role="button" data-theme="b" data-iconpos="notext" data-icon="flat-camera"></a>
 {% endblock %}
