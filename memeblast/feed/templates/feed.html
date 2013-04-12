@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% block title %}Feed{% endblock %}
 {% block header %}
-<h1>Feed</h1>
+<h1>MEMEBLAST</h1>
 {% endblock %}
 {% block content %}
 <ul data-role="listview">
     {% for picture in picture_list %}    
         <li>
-        <img src="data:image/jpg;base64, {{picture.picture_url}}">
+        <img src="static/uploads/{{ picture.picture_url }}">
             {{ picture.text }}
         </li>
     {% endfor %}
 </ul>
 <br>
-<strong>CRISTEA PUBLISHES!!</strong>
+<strong>BLASTING THE MEMES SINCE 2013</strong>
 {% endblock %}
 
 {% block footer %}

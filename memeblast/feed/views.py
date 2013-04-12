@@ -5,6 +5,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.utils import simplejson
 import datetime
+import time
+import random
 #from django import forms
 
 def feed(request):
@@ -17,9 +19,16 @@ def edit_image(request):
     return render(request, 'upload.html', {})
 
 def upload(request):
-    if request.method == "POST":
+    if request.method == "POST" or True:
+        
+        # TODO: make uploads path a setting
+        filename = str(int(random.random() * 1000000)) + str(int(time.time())) + ".png"
+        fh = open("/uploads/" + filename , "wb")
+        fh.write(request.POST['base64_image'].decode('base64'))
+        fh.close()
+
         picture = Picture()
-        picture.picture_url = request.POST['base64_image']
+        picture.picture_url = filename
         picture.posted_on = datetime.datetime.now()
         picture.text = "testing hardstyle"
         picture.save()
