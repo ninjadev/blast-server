@@ -4,4 +4,5 @@ import feed.views as views
 urlpatterns = patterns(
     '',
     url(r'^$', views.feed),
+    url(r'^upload', views.upload),
 )

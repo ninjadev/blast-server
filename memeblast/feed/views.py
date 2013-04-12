@@ -4,7 +4,10 @@ from models import Picture
 
 
 def feed(request):
-    picture_list = Picture.objects.all().order_by('-updated')
+    picture_list = Picture.objects.all().order_by('-posted_on')
     return render(request, 'feed.html', {
         "picture_list" : picture_list
     })
+
+def upload(request):
+    return render(request, 'upload.html', {})
