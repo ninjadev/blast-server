@@ -1,2 +1,24 @@
-fo shizzle
-fo shizzle
+# MEMEBLAST
+
+## Komme i gang
+
+virtualenv memeblast && cd memeblast && source bin/activate
+git clone git@bitbucket.org:sigveseb/memeblast.git && cd memeblast
+pip install -r requirements.txt
+python manage.py syncdb --migrate
+
+
+## Nyttige kommandoer
+
+### Starte utviklingsserver
+
+    python manage.py runserver
+
+### Migrere databaseendringer
+
+    python manage.py syncdb --migrate
+
+### Lage nye migreringer etter modellendringer
+
+    python manage.py schemamigration --auto
+
