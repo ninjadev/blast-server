@@ -6,7 +6,10 @@
 {% block content %}
 <ul data-role="listview">
     {% for picture in picture_list %}    
-        <li>{{ picture.picture_url }}</li>
+        <li>
+        <img src="data:image/jpg;base64, {{picture.picture_url}}">
+            {{ picture.text }}
+        </li>
     {% endfor %}
 </ul>
 {% endblock %}
