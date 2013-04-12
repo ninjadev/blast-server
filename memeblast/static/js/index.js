@@ -17,16 +17,20 @@
  * under the License.
  */
 
+var image_id;
 var app = {
     // Application Constructor
     initialize: function() {
+                    initAjax();
                     this.bindEvents();
                     $.mobile.allowCrossDomainPages = true;
                     $('#photo-btn').click(function(e) {
+                        e.preventDefault();
                         takePhoto();
                     });
                     $('#publish-image').bind('click', function(e) {
-                        alert("yolo");
+                        e.preventDefault();
+                        publishImage();
                     })
                 },
     // Bind Event Listeners
@@ -64,11 +68,14 @@ function getCookie(name) {
     return cookieValue;
 }
 
-$.ajaxSetup({
-    beforeSend: function(xhr, settings) {
-            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-    }
-});
+function initAjax() {
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        }
+    });
+}
+
 
 function takePhoto() {
     navigator.camera.getPicture(getPic,
@@ -90,22 +97,39 @@ function getPic(data) {
     sendImage(data);
 }
 
-function sendImage(base64_image) {
-    $.ajax({ 
+function sendImage(data) {
+    alert("attempting to send data beginning with " + data.slice(0,10,0));
+    console.log("attempting to send image encoded as base64");
+    data.length && $.ajax({ 
         type: "POST", 
         url: "/upload/post", 
         data: {
-            "base64_image":base64_image
-        } 
+            "base64_image": document.getElementById('pictureTaken').src
+        },
+        success: function(data) {
+            image_id = data['image_id'];
+            alert(image_id);
+        },
+        error: function() {
+            alert("massive failure");
+        }
     })
 }
 
 function  publishImage(image_id) {
-    $.ajax({ 
+    console.log("attempting to publish image" + image_id);
+    image_id && $.ajax({ 
         type: "POST", 
         url: "/upload/publish", 
         data: {
             "image_id":image_id
+        },
+        success: function(data) {
+            alert("published image"); 
+        },
+        error: function() {
+            alert("massive failure");
         }
     })
+    window.location = "/";
 }
