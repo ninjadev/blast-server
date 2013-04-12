@@ -123,7 +123,7 @@ INSTALLED_APPS = (
 
     'south',
 
-    'django_toolbar',
+    'debug_toolbar',
 
     # Uncomment the next line to enable the admin:
      'django.contrib.admin',
