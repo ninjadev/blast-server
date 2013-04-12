@@ -6,13 +6,13 @@
 {% block content %}
 <ul data-role="listview">
     {% for picture in picture_list %}    
-        <li>{{ pictureurl }}</li>
+    <li>{{ pictureurl }}</li>
     {% endfor %}
 </ul>
 {% endblock %}
 
 {% block footer %}
 <div data-role="footer" data-position="fixed" class="ui-bar">
-    <a href="upload" data-icon="plus">Take a photo</a>
+    <a href="upload" id="photoBtn" data-icon="plus">Take a photo</a>
 </div>
 {% endblock %}
