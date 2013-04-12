@@ -7,7 +7,7 @@
 <ul data-role="listview">
     {% for picture in picture_list %}    
         <li>
-        <img src="static/uploads/{{ picture.picture_url }}">
+        <img src="{{ picture.get_absolute_url }}">
             {{ picture.text }}
         </li>
     {% endfor %}

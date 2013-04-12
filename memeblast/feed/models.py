@@ -1,4 +1,5 @@
 from django.db import models
+import memeblast.settings.settings as settings
 
 class Picture(models.Model):
     picture_url = models.CharField(max_length=100)
@@ -8,3 +9,6 @@ class Picture(models.Model):
 
     def __unicode__(self):
         return str(self.pk) + " " + self.picture_url[:10]
+
+    def get_absolute_url(self):
+        return settings.MEDIA_URL + '/' + picture_url
