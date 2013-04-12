@@ -96,12 +96,6 @@ function takePhoto() {
 };
 
 function getPic(data) {
-    //her ligger bildeinfoen
-    var imageTaken = document.getElementById('pictureTaken');
-    imageTaken.style.display='block';
-    imageTaken.style.width="100%";
-    imageTaken.src = "data:image/jpeg;base64,"+data; //her legger vi bildet ut som b64, mens "data" er selve strengen
-
     sendImage(data);
 }
 
@@ -111,7 +105,7 @@ function sendImage(data) {
         type: "POST", 
         url: "/upload/post", 
         data: {
-            "base64_image": document.getElementById('pictureTaken').src
+            "base64_image": data
         },
         success: function(data) {
             image_id = data['image_id'];
