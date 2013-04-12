@@ -21,15 +21,23 @@ var image_id;
 var app = {
     // Application Constructor
     initialize: function() {
+                    console.log("initialize()");
+                    console.log("initajax...");
                     initAjax();
+                    console.log("bindecents...");
                     this.bindEvents();
+                    console.log("allowcrossdomainpages...");
                     $.mobile.allowCrossDomainPages = true;
+                    console.log("hooking click...");
                     $('#photo-btn').click(function(e) {
                         e.preventDefault();
+                        console.log("takephoto");
                         takePhoto();
                     });
+                    console.log("hooking click publish...");
                     $('#publish-image').bind('click', function(e) {
                         e.preventDefault();
+                        console.log("publishing");
                         publishImage();
                     })
                 },
@@ -38,6 +46,7 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
+                    console.log("bindevents...");
                     document.addEventListener('deviceready', this.onDeviceReady, false);
                 },
     // deviceready Event Handler
@@ -45,6 +54,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+                    console.log("ondeviceready");
                        app.receivedEvent('deviceready');
                    },
     // Update DOM on a Received Event
