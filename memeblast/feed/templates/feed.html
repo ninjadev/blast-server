@@ -4,7 +4,11 @@
 <h1>Feed</h1>
 {% endblock %}
 {% block content %}
-yo
+<ul data-role="listview">
+    {% for picture in picture_list %}    
+        <li>{{ pictureurl }}</li>
+    {% endfor %}
+</ul>
 {% endblock %}
 
 {% block footer %}
