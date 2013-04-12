@@ -8,3 +8,6 @@ def feed(request):
     return render(request, 'feed.html', {
         "picture_list" : picture_list
     })
+
+def upload(request):
+    return render(request, 'upload.html', {})
