@@ -7,7 +7,7 @@ urlpatterns = patterns(
     '',
 
     # Feed urls
-    url(r'^', include('feed.urls')),
+    url(r'^', include('memeblast.feed.urls')),
 
     # Examples:
     # url(r'^$', 'memeblast.views.home', name='home'),

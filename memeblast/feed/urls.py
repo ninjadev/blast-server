@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, url
-from django import forms
-import feed.views as views
+import memeblast.feed.views as views
 
 urlpatterns = patterns(
     '',
