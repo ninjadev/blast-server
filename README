@@ -9,6 +9,10 @@ pip install -r requirements_dev.txt
 python manage.py syncdb --migrate
 
 
+## Advarsler
+
+Ingen må slette settings.py i git, da dør prodskriptet :P
+
 ## Nyttige kommandoer
 
 ### Starte utviklingsserver
