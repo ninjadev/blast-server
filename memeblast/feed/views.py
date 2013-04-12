@@ -1,6 +1,6 @@
 # Create your views here.
 from django.shortcuts import render
-from memeblast.models import Picture
+from models import Picture
 
 
 def feed(request):
