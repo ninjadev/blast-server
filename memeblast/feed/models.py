@@ -11,4 +11,4 @@ class Picture(models.Model):
         return str(self.pk) + " " + self.picture_url[:10]
 
     def get_absolute_url(self):
-        return settings.MEDIA_URL + '/' + picture_url
+        return settings.MEDIA_URL + '/' + self.picture_url
