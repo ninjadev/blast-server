@@ -21,26 +21,20 @@ var image_id;
 var app = {
     // Application Constructor
     initialize: function() {
-                    console.log("initialize()");
-                    console.log("initajax...");
                     initAjax();
-                    console.log("bindecents...");
                     this.bindEvents();
-                    console.log("allowcrossdomainpages...");
                     $.mobile.allowCrossDomainPages = true;
-                    console.log("hooking click...");
                     $('#photo-btn').click(function(e) {
                         e.preventDefault();
-                        console.log("takephoto");
                         takePhoto();
                     });
-                    console.log("hooking click publish...");
                     $('#publish-image').bind('click', function(e) {
                         e.preventDefault();
                         console.log("publishing");
                         publishImage();
                     })
                 },
+    //
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
@@ -89,7 +83,10 @@ function initAjax() {
 
 function takePhoto() {
     navigator.camera.getPicture(getPic,
-            null,
+            function failure(message){
+                console.log("CAMERA ERROR");  
+                console.log("message");  
+            },
             {
                 quality:49,
         destinationType:0,
