@@ -1,3 +1,5 @@
 from django.db import models
 
-# Create your models here.
+class Picture(models.Model):
+    picture_url = models.CharField(max_length=100)
+    posted_on = models.DateTimeField()
