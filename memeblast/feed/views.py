@@ -24,9 +24,9 @@ def edit_image(request):
     return render(request, 'upload.html', {})
 
 def upload(request):
-    if request.method == "POST" or True:
+    if request.method == "POST":
         
-        filename = str(int(random.random() * 1000000)) + str(int(time.time())) + ".png"
+        filename = str(int(random.random() * 1000000)) + str(int(time.time())) + ".jpg"
         fh = open(settings.MEDIA_PATH + filename , "wb")
         fh.write(request.POST['base64_image'].decode('base64'))
         fh.close()
