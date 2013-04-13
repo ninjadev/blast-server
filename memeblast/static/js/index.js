@@ -111,8 +111,10 @@ function sendImage(data) {
             image_id = data['image_id'];
             alert(image_id);
         },
-        error: function() {
+        error: function(xhr, error, message) {
             alert("massive failure");
+            alert(error);
+            alert(message);
         }
     })
 }
