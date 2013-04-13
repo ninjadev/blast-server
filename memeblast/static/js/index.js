@@ -18,6 +18,11 @@
  */
 
 var image_id;
+
+function refresh(){
+    window.location = '/' + $('#OS').text() + '/';
+}
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -26,7 +31,7 @@ var app = {
                     $.mobile.allowCrossDomainPages = true;
                     $('#refresh-btn').click(function(e) {
                         e.preventDefault();
-                        window.location = '/' + $('#OS').text() + '/';
+                        refresh();
                     });
                     $('#photo-btn').click(function(e) {
                         e.preventDefault();
@@ -112,6 +117,7 @@ function sendImage(data) {
         },
         success: function(data) {
             image_id = data['image_id'];
+            refresh();
         },
         error: function(xhr, error, message) {
         }
