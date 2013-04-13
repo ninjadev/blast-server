@@ -1,10 +1,11 @@
 # Create your views here.
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from models import Picture
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.utils import simplejson
-import memeblast.settings.settings
+import memeblast.settings.settings as settings
 import datetime
 import time
 import random
@@ -23,11 +24,12 @@ def feed(request, cordova_js_file=""):
 def edit_image(request):
     return render(request, 'upload.html', {})
 
+@csrf_exempt
 def upload(request):
-    if request.method == "POST" or True:
+    if request.method == "POST":
         
-        filename = str(int(random.random() * 1000000)) + str(int(time.time())) + ".png"
-        fh = open(settings.MEDIA_PATH + filename , "wb")
+        filename = str(int(random.random() * 1000000)) + str(int(time.time())) + ".jpg"
+        fh = open(settings.MEDIA_ROOT + filename , "wb")
         fh.write(request.POST['base64_image'].decode('base64'))
         fh.close()
 

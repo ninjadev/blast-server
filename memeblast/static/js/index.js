@@ -30,7 +30,6 @@ var app = {
                     });
                     $('#publish-image').bind('click', function(e) {
                         e.preventDefault();
-                        console.log("publishing");
                         publishImage();
                     })
                 },
@@ -40,7 +39,6 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-                    console.log("bindevents...");
                     document.addEventListener('deviceready', this.onDeviceReady, false);
                 },
     // deviceready Event Handler
@@ -48,7 +46,6 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-                    console.log("ondeviceready");
                        app.receivedEvent('deviceready');
                    },
     // Update DOM on a Received Event
@@ -82,39 +79,33 @@ function initAjax() {
 
 
 function takePhoto() {
-    console.log("takePhoto was called");
     navigator.camera.getPicture(getPic,
             function failure(message){
-                console.log("CAMERA ERROR");  
-                console.log("message");  
+                console.log("error");
+                console.log(message);
             },
             {
-                quality:49,
-        destinationType:0,
-        allowEdit : true
+                quality : 75, 
+                destinationType : Camera.DestinationType.DATA_URL, 
+                sourceType : Camera.PictureSourceType.CAMERA, 
+                allowEdit : true,
+                encodingType: Camera.EncodingType.JPEG,
+                targetWidth: 1024,
+                targetHeight: 1024
             });
 };
 
 function getPic(data) {
-    //her ligger bildeinfoen
-    console.log("CAMERA SUCCESS!!");
-    var imageTaken = document.getElementById('pictureTaken');
-    imageTaken.style.display='block';
-    imageTaken.style.width="100%";
-    imageTaken.src = "data:image/jpeg;base64,"+data; //her legger vi bildet ut som b64, mens "data" er selve strengen
-
     sendImage(data);
 }
 
 function sendImage(data) {
-    console.log("got to sendimage even, mofo");
     alert("attempting to send data beginning with " + data.slice(0,10,0));
-    console.log("attempting to send image encoded as base64");
     data.length && $.ajax({ 
         type: "POST", 
-        url: "/upload/post", 
+        url: "/upload/post/", 
         data: {
-            "base64_image": document.getElementById('pictureTaken').src
+            "base64_image": data
         },
         success: function(data) {
             image_id = data['image_id'];
@@ -127,7 +118,6 @@ function sendImage(data) {
 }
 
 function  publishImage(image_id) {
-    console.log("attempting to publish image" + image_id);
     image_id && $.ajax({ 
         type: "POST", 
         url: "/upload/publish", 

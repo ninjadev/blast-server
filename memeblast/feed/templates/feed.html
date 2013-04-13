@@ -9,14 +9,14 @@ Feed
 {% endblock %}
 
 {% block content %}
-<ul data-role="listview">
+<div>
     {% for picture in picture_list %}    
-    <li>
-        <img src="{{ picture.get_absolute_url }}">
+    <div>
+        <img src="{{ picture.get_absolute_url }}"  style="width:100%">
         {{ picture.text }}
-    </li>
+    </div>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}
 
 {% block footer %}
