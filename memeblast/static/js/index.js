@@ -20,7 +20,7 @@
 var image_id;
 
 function refresh(){
-    window.location.refresh();
+    window.location.reload();
 }
 
 var app = {
