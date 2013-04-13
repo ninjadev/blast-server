@@ -15,7 +15,7 @@ def android(request):
     return feed(request, "cordova.android.js")
 
 def feed(request, cordova_js_file=""):
-    picture_list = Picture.objects.all().order_by('+posted_on')
+    picture_list = reversed(Picture.objects.all().order_by('-posted_on'))
     return render(request, 'feed.html', {
         "picture_list" : picture_list,
         "cordova_js_file": cordova_js_file
