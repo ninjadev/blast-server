@@ -7,8 +7,7 @@
 <ul data-role="listview">
     {% for picture in picture_list %}    
         <li>
-        <img src="{{ picture.get_absolute_url }}">
-            {{ picture.text }}
+        <img src="{{ picture.get_absolute_url }}" style="width:100%">
         </li>
     {% endfor %}
 </ul>
