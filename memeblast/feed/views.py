@@ -1,5 +1,6 @@
 # Create your views here.
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from models import Picture
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -23,6 +24,7 @@ def feed(request, cordova_js_file=""):
 def edit_image(request):
     return render(request, 'upload.html', {})
 
+@csrf_exempt
 def upload(request):
     if request.method == "POST":
         
