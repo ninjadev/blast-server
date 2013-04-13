@@ -4,13 +4,11 @@
 <h1>MEMEBLAST</h1>
 {% endblock %}
 {% block content %}
-<ul data-role="listview">
+<div data-role="listview">
     {% for picture in picture_list %}    
-        <li>
         <img src="{{ picture.get_absolute_url }}" style="width:100%">
-        </li>
     {% endfor %}
-</ul>
+</div>
 <br>
 <strong>BLASTING THE MEMES SINCE 2013</strong>
 {% endblock %}
