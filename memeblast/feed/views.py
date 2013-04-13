@@ -5,7 +5,7 @@ from models import Picture
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.utils import simplejson
-import memeblast.settings.settings
+import memeblast.settings.settings as settings
 import datetime
 import time
 import random
