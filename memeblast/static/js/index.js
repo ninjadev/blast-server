@@ -20,7 +20,7 @@
 var image_id;
 
 function refresh(){
-    window.location = '/' + $('#OS').text() + '/';
+    document.location = '/' + $('#OS').text() + '/';
 }
 
 var app = {
