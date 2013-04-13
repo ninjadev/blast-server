@@ -12,13 +12,14 @@ import random
 #from django import forms
 
 def android(request):
-    return feed(request, "cordova.android.js")
+    return feed(request, cordova_js_file="cordova.android.js", os="android")
 
-def feed(request, cordova_js_file=""):
+def feed(request, cordova_js_file="", os=""):
     picture_list = Picture.objects.all().order_by('-posted_on')
     return render(request, 'feed.html', {
         "picture_list" : picture_list,
-        "cordova_js_file": cordova_js_file
+        "cordova_js_file": cordova_js_file,
+        os:os
     })
 
 def edit_image(request):

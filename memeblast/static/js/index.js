@@ -24,6 +24,10 @@ var app = {
                     initAjax();
                     this.bindEvents();
                     $.mobile.allowCrossDomainPages = true;
+                    $('#refresh-btn').click(function(e) {
+                        e.preventDefault();
+                        window.location = '/' + $('#OS').text() + '/';
+                    });
                     $('#photo-btn').click(function(e) {
                         e.preventDefault();
                         takePhoto();
