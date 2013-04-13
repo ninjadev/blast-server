@@ -14,7 +14,7 @@ Feed
 {% block content %}
 <div>
     {% for picture in picture_list %}    
-    <div>
+    <div data-role="listview">
         <img src="{{ picture.get_absolute_url }}"  style="width:100%">
     </div>
     {% endfor %}
