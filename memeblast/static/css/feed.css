@@ -22,10 +22,10 @@
     display: block;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 1024px) {
     .image-feed img {
         width: 100%;
-        max-width: 500px;
+        max-width: 1024px;
         position: relative;
         margin: 0  auto;
     }
