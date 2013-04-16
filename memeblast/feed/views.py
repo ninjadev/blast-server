@@ -18,7 +18,8 @@ def iphone(request):
     return feed(request, cordova_js_file="cordova.ios.js", os="ios")
 
 def feed(request, cordova_js_file="", os=""):
-    picture_list = Picture.objects.all().order_by('-posted_on')[:30]
+    picture_list = Picture.get_latest(count=30)
+    
     return render(request, 'feed.html', {
         "picture_list" : picture_list,
         "cordova_js_file": cordova_js_file,

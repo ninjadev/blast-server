@@ -12,3 +12,7 @@ class Picture(models.Model):
 
     def get_absolute_url(self):
         return settings.MEDIA_URL + '/' + self.picture_url
+
+    @staticmethod
+    def get_latest(count=30):
+        return Picture.objects.all().order_by('-posted_on')[:30]
