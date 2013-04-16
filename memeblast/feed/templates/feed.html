@@ -13,13 +13,11 @@ Feed
 
 {% block content %}
     <div id=OS style=display:hidden>{{ os }}</div>
-<div>
+    <div class="image-feed">
     {% for picture in picture_list %}    
-    <div data-role="listview">
-        <img src="{{ picture.get_absolute_url }}"  style="width:100%">
-    </div>
+        <img src="{{ picture.get_absolute_url }}">
     {% endfor %}
-</div>
+    </div>
 {% endblock %}
 
 {% block footer %}
