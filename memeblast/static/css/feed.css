@@ -11,3 +11,22 @@
 	bottom:5px;
 	left:5px;
 }
+.ui-content {
+    background: #95A5A6;
+}
+.image-feed {
+    margin: -15px;
+}
+.image-feed img {
+    width: 100%;
+    display: block;
+}
+
+@media screen and (min-width: 500px) {
+    .image-feed img {
+        width: 100%;
+        max-width: 500px;
+        position: relative;
+        margin: 0  auto;
+    }
+}
