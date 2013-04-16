@@ -1,5 +1,8 @@
-from django.conf.urls import patterns, url
+from django.conf.urls.defaults import *
 import memeblast.feed.views as views
+from memeblast.feed.api import PictureResource
+
+picture_resource = PictureResource()
 
 urlpatterns = patterns(
     '',
@@ -8,5 +11,6 @@ urlpatterns = patterns(
     url(r'^iphone/$', views.iphone),
     url(r'^upload$', views.edit_image),
     url(r'^upload/post$', views.upload),
-    url(r'^upload/publish$', views.publish)
+    url(r'^upload/publish$', views.publish),
+    url(r'^api/', include(picture_resource.urls)),
 )
