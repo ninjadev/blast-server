@@ -1,5 +1,4 @@
 Django==1.5.1
-Fabric==1.6.0
 South==0.7.6
 django-tastypie==0.9.14
 mimeparse==0.1.3
