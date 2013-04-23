@@ -51,6 +51,35 @@ def upload(request):
     else:
         return HttpResponseRedirect("/")
 
+@csrf_exempt
+def upload_image(request):
+    if request.method == "POST":
+        if len(request.FILES) > 0:
+            filename = save_file(request.FILES['picture'])
+
+            picture = Picture()
+            picture.picture_url = filename
+            picture.posted_on = datetime.datetime.now()
+            picture.text = "testing hardstyle"
+            picture.published = True
+            picture.save()
+
+            response_data = {}
+            response_data['image_id'] = picture.pk
+
+            return HttpResponse(simplejson.dumps(response_data), mimetype="application/json")
+
+def save_file(file, path=''):
+        filename = file._get_name()
+        fd = open('%s/%s' % (settings.MEDIA_ROOT, str(path) + str(filename)), 'wb')
+        for chunk in file.chunks():
+            fd.write(chunk)
+        fd.close()
+        return filename
+
+def uploadTest(request):
+    return render(request, 'uploadtest.html')
+
 def publish(request):
     if request.method == "POST":
         picture = Picture.objects.get(pk = int(request.POST['image_id']))
