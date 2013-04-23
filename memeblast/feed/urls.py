@@ -16,5 +16,4 @@ urlpatterns = patterns(
     url(r'^upload/publish$', views.publish),
     url(r'^api/', include(v1_api.urls)),
     url(r'^imageupload/', views.upload_image),
-    url(r'^uploadtest/', views.uploadTest),
 )
