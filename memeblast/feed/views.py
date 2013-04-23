@@ -70,7 +70,7 @@ def upload_image(request):
             return HttpResponse(simplejson.dumps(response_data), mimetype="application/json")
 
 def save_file(file, path=''):
-        filename = file._get_name()
+        filename = str(int(random.random() * 1000000)) + str(int(time.time())) + ".jpg"
         fd = open('%s/%s' % (settings.MEDIA_ROOT, str(path) + str(filename)), 'wb')
         for chunk in file.chunks():
             fd.write(chunk)
