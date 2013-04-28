@@ -9,6 +9,7 @@ import memeblast.settings.settings as settings
 import datetime
 import time
 import random
+from PIL import Image
 #from django import forms
 
 def android(request):
@@ -55,13 +56,15 @@ def upload(request):
 def upload_image(request):
     if request.method == "POST":
         if len(request.FILES) > 0:
-            filename = save_file(request.FILES['picture'])
+            filename, width, height = save_file(request.FILES['picture'])
 
             picture = Picture()
             picture.picture_url = filename
             picture.posted_on = datetime.datetime.now()
             picture.text = "testing hardstyle"
             picture.published = True
+            picture.width = width
+            picture.height = height
             picture.save()
 
             response_data = {}
@@ -71,11 +74,14 @@ def upload_image(request):
 
 def save_file(file, path=''):
         filename = str(int(random.random() * 1000000)) + str(int(time.time())) + ".jpg"
-        fd = open('%s/%s' % (settings.MEDIA_ROOT, str(path) + str(filename)), 'wb')
+        filepath = '%s/%s' % (settings.MEDIA_ROOT, str(path) + str(filename))
+        fd = open(filepath, 'wb')
         for chunk in file.chunks():
             fd.write(chunk)
         fd.close()
-        return filename
+        img = Image.open(filepath)
+        width, height = img.size
+        return (filename, width, height)
 
 def uploadTest(request):
     return render(request, 'uploadtest.html')
