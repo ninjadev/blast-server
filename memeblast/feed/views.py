@@ -38,10 +38,14 @@ def upload(request):
         fh = open(settings.MEDIA_ROOT + filename , "wb")
         fh.write(request.POST['base64_image'].decode('base64'))
         fh.close()
+        
+        width, height = get_image_size(filename)
 
         picture = Picture()
         picture.picture_url = filename
         picture.posted_on = datetime.datetime.now()
+        picture.width = width
+        picture.height = height
         picture.text = "testing hardstyle"
         picture.save()
 
@@ -56,7 +60,9 @@ def upload(request):
 def upload_image(request):
     if request.method == "POST":
         if len(request.FILES) > 0:
-            filename, width, height = save_file(request.FILES['picture'])
+            filename = save_file(request.FILES['picture'])
+
+            width, height = get_image_size(filename)
 
             picture = Picture()
             picture.picture_url = filename
@@ -72,16 +78,22 @@ def upload_image(request):
 
             return HttpResponse(simplejson.dumps(response_data), mimetype="application/json")
 
-def save_file(file, path=''):
+
+def save_file(file):
         filename = str(int(random.random() * 1000000)) + str(int(time.time())) + ".jpg"
-        filepath = '%s/%s' % (settings.MEDIA_ROOT, str(path) + str(filename))
+        filepath = settings.MEDIA_ROOT + filename
         fd = open(filepath, 'wb')
         for chunk in file.chunks():
             fd.write(chunk)
         fd.close()
-        img = Image.open(filepath)
-        width, height = img.size
-        return (filename, width, height)
+        return filename
+
+
+def get_image_size(filename):
+    img = Image.open(settings.MEDIA_ROOT + filename)
+    width, height = img.size
+    return (width, height)
+
 
 def uploadTest(request):
     return render(request, 'uploadtest.html')
