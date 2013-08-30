@@ -17,7 +17,6 @@ class Site(object):
         self.update_packages()
         self.run('../bin/python manage.py syncdb --migrate')
         self.run('../bin/python manage.py collectstatic --noinput')
-        self.restart()
 
     def git_pull(self):
         # .pyc files can create ghost behavior when .py files are deleted...
@@ -34,16 +33,9 @@ class Site(object):
     def update_packages(self):
         self.run("../bin/pip install -r requirements.txt")
 
-    def restart(self):
-        header("Running: Restart server script: nginx")
-        self.run("killall python || true")
-        self.run("../bin/python manage.py run_gunicorn 127.0.0.1:8888 -D")
-        header("Running: Restart server script: nginx")
-        run("sudo service nginx restart")
-
 PROD = Site(
-    dir='/home/prods/memeblast/memeblast',
-    user_id='web'
+    dir='/home/prods/blast/blast-server',
+    user_id='www-data'
 )
 
 env.hosts = ['ndv.arkt.is']
