@@ -17,6 +17,7 @@ class Site(object):
         self.update_packages()
         self.run('../bin/python manage.py syncdb --migrate')
         self.run('../bin/python manage.py collectstatic --noinput')
+        self.run('touch /etc/uwsgi/vassals/blast_uwsgi.ini')
 
     def git_pull(self):
         # .pyc files can create ghost behavior when .py files are deleted...
