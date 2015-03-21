@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 import memeblast.feed.views as views
 from tastypie.api import Api
 from memeblast.feed.api import v1, v1_1
