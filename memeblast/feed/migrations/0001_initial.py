@@ -1,20 +1,28 @@
 # -*- coding: utf-8 -*-
-import datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        pass
+    dependencies = [
+    ]
 
-    def backwards(self, orm):
-        pass
-
-    models = {
-        
-    }
-
-    complete_apps = ['feed']
+    operations = [
+        migrations.CreateModel(
+            name='Picture',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('picture_url', models.CharField(max_length=100)),
+                ('posted_on', models.DateTimeField()),
+                ('text', models.CharField(max_length=20, null=True, blank=True)),
+                ('published', models.BooleanField(default=False)),
+                ('width', models.IntegerField(default=1024)),
+                ('height', models.IntegerField(default=1024)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+    ]
