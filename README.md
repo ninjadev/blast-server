@@ -4,9 +4,9 @@ Persistent social image sharing feed for the whole world.
 ## Installing
 
 ```
-virtualenv memeblast && cd memeblast && source bin/activate 
-git clone git@bitbucket.org:sigveseb/memeblast.git && cd memeblast 
-cp memeblast/memeblast/settings.py.example memeblast/memeblast/settings.py 
+virtualenv blast && cd blast && source bin/activate 
+git clone git@github.com:ninjadev/blast-server.git && cd blast-server 
+cp blast/settings/settings.py.example blast/settings/settings.py 
 pip install -r requirements_dev.txt 
 python manage.py migrate 
 ```

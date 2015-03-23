@@ -1,5 +1,5 @@
 from django.db import models
-import memeblast.settings.settings as settings
+import blast.settings.settings as settings
 
 class Picture(models.Model):
     picture_url = models.CharField(max_length=100)

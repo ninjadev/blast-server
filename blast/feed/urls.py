@@ -1,7 +1,7 @@
 from django.conf.urls import *
-import memeblast.feed.views as views
+import blast.feed.views as views
 from tastypie.api import Api
-from memeblast.feed.api import v1, v1_1
+from blast.feed.api import v1, v1_1
 
 v1_api = Api(api_name='v1')
 v1_api.register(v1.PictureResource())
