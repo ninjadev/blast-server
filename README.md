@@ -7,28 +7,31 @@ Persistent social image sharing feed for the whole world.
 virtualenv blast && cd blast && source bin/activate 
 git clone git@github.com:ninjadev/blast-server.git && cd blast-server 
 cp blast/settings/settings.py.example blast/settings/settings.py 
-pip install -r requirements_dev.txt 
-python manage.py migrate 
+make
 ```
 
 
 ### Warning
-Do not delete settings.py from  git, as the prod script then will die.
+Do not delete settings.py from git, as the prod script then will die.
 
 ## Commands
 
 ### Start development server
 
-    python manage.py runserver
+    make run
 
 ### Migrate database changes
 
-    python manage.py migrate
+    make migrate
 
 ### Create new migrations or model changes
 
-    python manage.py makemigrations
+    make migrations
+
+### Update dependencies
+
+    make update
 
 ### Deploy to server
- 
+
     fab deploy
