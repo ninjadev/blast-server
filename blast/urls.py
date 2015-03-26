@@ -7,11 +7,11 @@ urlpatterns = patterns(
     '',
 
     # Feed urls
-    url(r'^', include('memeblast.feed.urls')),
+    url(r'^', include('blast.feed.urls')),
 
     # Examples:
-    # url(r'^$', 'memeblast.views.home', name='home'),
-    # url(r'^memeblast/', include('memeblast.foo.urls')),
+    # url(r'^$', 'blast.views.home', name='home'),
+    # url(r'^blast/', include('blast.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

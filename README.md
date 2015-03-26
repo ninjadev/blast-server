@@ -1,32 +1,34 @@
-# MEMEBLAST
+# BLAST
+Persistent social image sharing feed for the whole world.
 
-## Komme i gang
+## Installing
 
-virtualenv memeblast && cd memeblast && source bin/activate
-git clone git@bitbucket.org:sigveseb/memeblast.git && cd memeblast
-cp memeblast/memeblast/settings.py.example memeblast/memeblast/settings.py
-pip install -r requirements_dev.txt
-python manage.py migrate
+```
+virtualenv blast && cd blast && source bin/activate 
+git clone git@github.com:ninjadev/blast-server.git && cd blast-server 
+cp blast/settings/settings.py.example blast/settings/settings.py 
+pip install -r requirements_dev.txt 
+python manage.py migrate 
+```
 
 
-## Advarsler
+### Warning
+Do not delete settings.py from  git, as the prod script then will die.
 
-Ingen må slette settings.py i git, da dør prodskriptet :P
+## Commands
 
-## Nyttige kommandoer
-
-### Starte utviklingsserver
+### Start development server
 
     python manage.py runserver
 
-### Migrere databaseendringer
+### Migrate database changes
 
     python manage.py migrate
 
-### Lage nye migreringer etter modellendringer
+### Create new migrations or model changes
 
     python manage.py makemigrations
 
-### deploy til server
+### Deploy to server
  
     fab deploy
